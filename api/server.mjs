@@ -31,6 +31,14 @@ await apolloServer.start();
 app.use(cors());
 
 app.use(
+  graphqlUploadExpress({
+    // Limits here should be stricter than config for surrounding infrastructure
+    // such as NGINX so errors can be handled elegantly by `graphql-upload`.
+    maxFileSize: 10000000, // 10 MB
+    maxFiles: 20,
+  })
+);
+app.use(
   '/graphql',
   express.json(),
   expressMiddleware(apolloServer)
