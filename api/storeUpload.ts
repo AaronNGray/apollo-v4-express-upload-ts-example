@@ -3,8 +3,9 @@
 import { createWriteStream, unlink } from "node:fs";
 
 import shortId from "shortid";
+import { FileUpload } from "graphql-upload-ts";
 
-import UPLOAD_DIRECTORY_URL from "./config/UPLOAD_DIRECTORY_URL.mjs";
+import UPLOAD_DIRECTORY_URL from "./config/UPLOAD_DIRECTORY_URL";
 
 /**
  * Stores a GraphQL file upload in the filesystem.
@@ -13,14 +14,14 @@ import UPLOAD_DIRECTORY_URL from "./config/UPLOAD_DIRECTORY_URL.mjs";
  * >} upload GraphQL file upload.
  * @returns {Promise<string>} Resolves the stored file name.
  */
-export default async function storeUpload(upload) {
+export default async function storeUpload(upload:FileUpload) {
   const { createReadStream, filename } = await upload;
   const stream = createReadStream();
   const storedFileName = `${shortId.generate()}-${filename}`;
   const storedFileUrl = new URL(storedFileName, UPLOAD_DIRECTORY_URL);
 
   // Store the file in the filesystem.
-  await new Promise((resolve, reject) => {
+  await new Promise<void>((resolve, reject) => {
     // Create a stream to which the upload will be written.
     const writeStream = createWriteStream(storedFileUrl);
 

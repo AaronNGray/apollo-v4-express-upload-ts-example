@@ -1,10 +1,10 @@
 // @ts-check
 
 import { GraphQLList, GraphQLNonNull, GraphQLObjectType } from "graphql";
-import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
+import { GraphQLUpload } from "graphql-upload-ts";
 
-import storeUpload from "../storeUpload.mjs";
-import FileType from "./FileType.mjs";
+import storeUpload from "../storeUpload";
+import FileType from "./FileType";
 
 export default new GraphQLObjectType({
   name: "Mutation",
@@ -18,7 +18,7 @@ export default new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLUpload),
         },
       },
-      resolve: (parent, { file }) => storeUpload(file),
+      resolve: (parent, { file }) => storeUpload(file)
     },
     multipleUpload: {
       description: "Stores multiple files.",

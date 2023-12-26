@@ -1,5 +1,5 @@
 {
-  "name": "apollo-v4-express-upload-example-api",
+  "name": "apollo-v4-express-upload-ts-example-api",
   "private": true,
   "license": "MIT",
   "author": [
@@ -9,6 +9,11 @@
       "url": "https://jaydenseric.com"
     },
     {
+        "name": "Mohamed Meabed",
+        "email": "mo@meabed.com",
+        "url": "https://meabed.com"
+    },
+    {
       "name": "Aaron N Gray",
       "email": "aaronngray@gmail.com",
       "url": "https://github.com/AaronNGray"
@@ -16,11 +21,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/AaronNGray/apollo-v4-express-upload-test.git",
+    "url": "https://github.com/AaronNGray/apollo-v4-express-upload-ts-example.git",
     "directory": "api"
   },
-  "homepage": "https://github.com/AaronNGray/apollo-express-upload-examples#readme",
-  "bugs": "https://github.com/AaronNGray/apollo-express-upload-examples/issues",
+  "homepage": "https://github.com/AaronNGray/apollo-v4-express-upload-ts-example#readme",
+  "bugs": "https://github.com/AaronNGray/apollo-v4-express-upload-ts-example/issues",
   "engines": {
     "node": ">= 18.11.0",
     "npm": ">= 7"
@@ -33,23 +38,28 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "graphql": "^16.6.0",
-    "graphql-upload": "^16.0.2",
+    "graphql-upload-ts": "^2.1.0",
     "make-dir": "^3.1.0",
-    "shortid": "^2.2.16"
+    "shortid": "^2.2.16",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
+    "@types/shortid": "^0.0.32",
     "eslint": "^8.31.0",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "prettier": "^2.8.2",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   },
   "scripts": {
-    "dev": "node --watch -r dotenv/config server.mjs",
-    "start": "node -r dotenv/config server.mjs",
+    "dev": "ts-node --watch -r dotenv/config server.ts",
+    "start": "ts-node -r dotenv/config server.ts",
     "eslint": "eslint .",
     "prettier": "prettier -c .",
     "types": "tsc -p jsconfig.json",
     "test": "npm run eslint && npm run prettier && npm run types"
-  }
+  },
+  "types": [
+    "node"
+  ]
 }

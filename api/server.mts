@@ -9,11 +9,11 @@ import { expressMiddleware } from "@apollo/server/express4";
 
 import cors from "cors";
 import express from "express";
-import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs";
+import { graphqlUploadExpress } from "graphql-upload-ts";
 import makeDir from "make-dir";
 
-import UPLOAD_DIRECTORY_URL from "./config/UPLOAD_DIRECTORY_URL.mjs";
-import schema from "./schema/index.mjs";
+import UPLOAD_DIRECTORY_URL from "./config/UPLOAD_DIRECTORY_URL";
+import schema from "./schema";
 
 // Ensure the upload directory exists.
 await makeDir(fileURLToPath(UPLOAD_DIRECTORY_URL));
